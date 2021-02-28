@@ -1,0 +1,19 @@
+version: '3'
+
+services: 
+  wppcontroller:
+    container_name: wppcontroller
+    build: .
+    env_file: 
+      .prod.env
+    ports:
+      - '8080:8080'
+    #command: /bin/sh -c "sleep 20 && /wppcontroller"
+    depends_on: 
+      - mongo
+
+  mongo:
+    image: 'mongo:latest'
+    container_name: 'mongo'
+    ports:
+      - '27017:27017'
